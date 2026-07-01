@@ -1,0 +1,5 @@
+services:
+  benchmark:
+    build: .
+    image: neural-net-from-scratch:latest
+    command: ["benchmark"]

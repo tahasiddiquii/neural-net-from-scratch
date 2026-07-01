@@ -1,0 +1,52 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "neural-net-from-scratch"
+version = "0.1.0"
+description = "A multilayer perceptron built from scratch in pure numpy — forward pass, backprop, SGD with momentum — trained on a non-linear spiral, with a gradient check that proves the math and an accuracy gate. No deep-learning framework."
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "MIT" }
+authors = [{ name = "Taha Siddiqui", email = "work.tahasiddiqui@gmail.com" }]
+keywords = [
+  "deep-learning", "neural-network", "backpropagation", "from-scratch", "numpy",
+  "gradient-checking", "mlp", "sgd", "machine-learning", "python",
+]
+classifiers = [
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "License :: OSI Approved :: MIT License",
+]
+dependencies = [
+  "numpy>=1.26",
+  "rich>=13.7",
+]
+
+[project.optional-dependencies]
+dev = ["ruff>=0.6", "pytest>=8.2", "pre-commit>=3.7"]
+
+[project.scripts]
+nnscratch = "nnscratch.cli:main"
+
+[project.urls]
+Homepage = "https://github.com/tahasiddiquii/neural-net-from-scratch"
+Source = "https://github.com/tahasiddiquii/neural-net-from-scratch"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/nnscratch"]
+
+[tool.ruff]
+line-length = 110
+target-version = "py311"
+src = ["src", "tests"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "SIM", "C4"]
+ignore = ["E501", "B008", "UP042"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src", "."]
+addopts = "-q"
+testpaths = ["tests"]
